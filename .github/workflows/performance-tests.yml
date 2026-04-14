@@ -1,0 +1,50 @@
+name: Performance Tests - BlazeDemo
+
+on:
+  push:
+    branches: [ "main", "master", "develop" ]
+  pull_request:
+    branches: [ "main", "master", "develop" ]
+  workflow_dispatch:
+
+jobs:
+  performance-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Baixar JMeter
+        run: |
+          wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.zip
+          unzip apache-jmeter-5.6.3.zip
+
+      - name: Executar teste de performance
+        run: |
+          apache-jmeter-5.6.3/bin/jmeter -n \
+            -t blazedemo-performance.jmx \
+            -l resultado.jtl \
+            -e -o dashboard
+
+      - name: Publicar resultado JTL
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultado-jtl
+          path: resultado.jtl
+          if-no-files-found: warn
+
+      - name: Publicar dashboard HTML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard
+          path: dashboard
+          if-no-files-found: warn
