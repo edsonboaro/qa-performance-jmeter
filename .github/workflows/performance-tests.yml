@@ -1,5 +1,8 @@
 name: Performance Tests - BlazeDemo
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 on:
   push:
     branches: [ "main", "master", "develop" ]
@@ -26,19 +29,30 @@ jobs:
           wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.zip
           unzip apache-jmeter-5.6.3.zip
 
+      - name: Criar diretório de artifacts
+        run: mkdir -p artifacts
+
       - name: Executar teste de performance
         run: |
           apache-jmeter-5.6.3/bin/jmeter -n \
             -t blazedemo-performance.jmx \
-            -l resultado.jtl \
-            -e -o dashboard
+            -l artifacts/resultado.jtl \
+            -e -o artifacts/dashboard
+
+      - name: Listar arquivos gerados
+        if: always()
+        run: |
+          echo "=== Arquivos do projeto ==="
+          ls -R
+          echo "=== Arquivos em artifacts ==="
+          ls -R artifacts || true
 
       - name: Publicar resultado JTL
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: resultado-jtl
-          path: resultado.jtl
+          path: artifacts/resultado.jtl
           if-no-files-found: warn
 
       - name: Publicar dashboard HTML
@@ -46,5 +60,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dashboard
-          path: dashboard
+          path: artifacts/dashboard
           if-no-files-found: warn
