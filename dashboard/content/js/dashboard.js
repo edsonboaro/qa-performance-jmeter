@@ -133,7 +133,7 @@ $(document).ready(function() {
         widgets: ['zebra']
     });
 
-    var data = {"OkPercent": 100.0, "KoPercent": 0.0};
+    var data = {"OkPercent": 99.83922829581994, "KoPercent": 0.1607717041800643};
     var dataset = [
         {
             "label" : "FAIL",
@@ -173,7 +173,7 @@ $(document).ready(function() {
     });
 
     // Creates APDEX table
-    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.5232140065655776, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.6462848297213623, 500, 1500, "Buscar Voos"], "isController": false}, {"data": [0.6603535353535354, 500, 1500, "Comprar Passagem"], "isController": false}, {"data": [0.6397608370702541, 500, 1500, "Home"], "isController": false}, {"data": [0.6438356164383562, 500, 1500, "Escolher Voo"], "isController": false}, {"data": [0.054185351270553066, 500, 1500, "Compra de passagem aérea - fluxo completo"], "isController": true}]}, function(index, item){
+    createTable($("#apdexTable"), {"supportsControllersDiscrimination": true, "overall": {"data": [0.6719765929778934, 500, 1500, "Total"], "isController": false}, "titles": ["Apdex", "T (Toleration threshold)", "F (Frustration threshold)", "Label"], "items": [{"data": [0.8349673202614379, 500, 1500, "Buscar Voos"], "isController": false}, {"data": [0.83, 500, 1500, "Comprar Passagem"], "isController": false}, {"data": [0.7898089171974523, 500, 1500, "Home"], "isController": false}, {"data": [0.8273026315789473, 500, 1500, "Escolher Voo"], "isController": false}, {"data": [0.09394904458598727, 500, 1500, "Compra de passagem aérea - fluxo completo"], "isController": true}]}, function(index, item){
         switch(index){
             case 0:
                 item = item.toFixed(3);
@@ -187,7 +187,7 @@ $(document).ready(function() {
     }, [[0, 0]], 3);
 
     // Create statistics table
-    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 5259, 0, 0.0, 1370.35386955695, 227, 16297, 522.0, 3936.0, 5680.0, 8156.799999999983, 141.2418757050008, 891.1785095611538, 35.06471529717462], "isController": false}, "titles": ["Label", "#Samples", "FAIL", "Error %", "Average", "Min", "Max", "Median", "90th pct", "95th pct", "99th pct", "Transactions/s", "Received", "Sent"], "items": [{"data": ["Buscar Voos", 1292, 0, 0.0, 1204.3281733746146, 231, 7987, 498.0, 3764.7000000000025, 4572.799999999997, 7176.549999999996, 35.50523509851879, 251.20647293825056, 7.662750934348291], "isController": false}, {"data": ["Comprar Passagem", 1188, 0, 0.0, 1167.2390572390575, 231, 7686, 469.5, 3590.4000000000005, 4873.949999999997, 6709.799999999992, 33.28476969629048, 187.87692269976466, 12.449283978202399], "isController": false}, {"data": ["Home", 1338, 0, 0.0, 1144.5754857997, 227, 7973, 524.5, 3409.7000000000007, 4258.749999999998, 7064.7299999999905, 36.688694507664046, 170.43761696577914, 4.2636275843867395], "isController": false}, {"data": ["Escolher Voo", 1241, 0, 0.0, 1212.742143432715, 229, 7693, 488.0, 3720.7999999999997, 4890.099999999998, 7260.5999999999985, 34.41390976401098, 225.80767549256814, 9.00676544604975], "isController": false}, {"data": ["Compra de passagem aérea - fluxo completo", 1338, 0, 0.0, 4468.721973094162, 260, 18183, 3954.5, 8423.900000000003, 9916.049999999997, 13045.22, 35.85593311180191, 809.4489095243997, 32.25058662838997], "isController": true}]}, function(index, item){
+    createTable($("#statisticsTable"), {"supportsControllersDiscrimination": true, "overall": {"data": ["Total", 1244, 2, 0.1607717041800643, 536.0321543408361, 230, 3907, 430.5, 935.0, 1185.0, 2198.7999999999984, 20.04576364046537, 122.28980223138032, 4.910602782880531], "isController": false}, "titles": ["Label", "#Samples", "FAIL", "Error %", "Average", "Min", "Max", "Median", "90th pct", "95th pct", "99th pct", "Transactions/s", "Received", "Sent"], "items": [{"data": ["Buscar Voos", 306, 0, 0.0, 505.2745098039218, 248, 1740, 432.0, 860.6000000000005, 1067.9499999999994, 1433.3800000000006, 5.188727235731, 36.71132485290128, 1.1198327334927256], "isController": false}, {"data": ["Comprar Passagem", 300, 2, 0.6666666666666666, 503.82666666666677, 230, 2529, 426.5, 829.9000000000001, 1054.3999999999999, 1946.3200000000015, 5.09571450410205, 28.762919759482276, 1.9168644794727634], "isController": false}, {"data": ["Home", 314, 0, 0.0, 550.3949044585983, 241, 2481, 431.5, 942.0, 1305.75, 2338.750000000003, 5.11234125691957, 23.749421249185932, 0.5941099702865515], "isController": false}, {"data": ["Escolher Voo", 304, 0, 0.0, 523.1842105263163, 234, 2461, 424.0, 963.5, 1116.0, 2212.8499999999995, 5.023796932839768, 32.96376132006875, 1.3148218535166578], "isController": false}, {"data": ["Compra de passagem aérea - fluxo completo", 314, 2, 0.6369426751592356, 2030.7006369426733, 319, 5006, 1863.5, 3030.5, 3441.5, 3824.7000000000044, 5.0561164517012065, 117.7361097692543, 4.7492925059981], "isController": true}]}, function(index, item){
         switch(index){
             // Errors pct
             case 3:
@@ -217,7 +217,7 @@ $(document).ready(function() {
     }, [[0, 0]], 0, summaryTableHeader);
 
     // Create error table
-    createTable($("#errorsTable"), {"supportsControllersDiscrimination": false, "titles": ["Type of error", "Number of errors", "% in errors", "% in all samples"], "items": []}, function(index, item){
+    createTable($("#errorsTable"), {"supportsControllersDiscrimination": false, "titles": ["Type of error", "Number of errors", "% in errors", "% in all samples"], "items": [{"data": ["The operation lasted too long: It took 2,359 milliseconds, but should not have lasted longer than 2,000 milliseconds.", 1, 50.0, 0.08038585209003216], "isController": false}, {"data": ["The operation lasted too long: It took 2,529 milliseconds, but should not have lasted longer than 2,000 milliseconds.", 1, 50.0, 0.08038585209003216], "isController": false}]}, function(index, item){
         switch(index){
             case 2:
             case 3:
@@ -228,7 +228,7 @@ $(document).ready(function() {
     }, [[1, 1]]);
 
         // Create top5 errors by sampler
-    createTable($("#top5ErrorsBySamplerTable"), {"supportsControllersDiscrimination": false, "overall": {"data": ["Total", 5259, 0, "", "", "", "", "", "", "", "", "", ""], "isController": false}, "titles": ["Sample", "#Samples", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors"], "items": [{"data": [], "isController": false}, {"data": [], "isController": false}, {"data": [], "isController": false}, {"data": [], "isController": false}, {"data": [], "isController": false}]}, function(index, item){
+    createTable($("#top5ErrorsBySamplerTable"), {"supportsControllersDiscrimination": false, "overall": {"data": ["Total", 1244, 2, "The operation lasted too long: It took 2,359 milliseconds, but should not have lasted longer than 2,000 milliseconds.", 1, "The operation lasted too long: It took 2,529 milliseconds, but should not have lasted longer than 2,000 milliseconds.", 1, "", "", "", "", "", ""], "isController": false}, "titles": ["Sample", "#Samples", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors", "Error", "#Errors"], "items": [{"data": [], "isController": false}, {"data": ["Comprar Passagem", 300, 2, "The operation lasted too long: It took 2,359 milliseconds, but should not have lasted longer than 2,000 milliseconds.", 1, "The operation lasted too long: It took 2,529 milliseconds, but should not have lasted longer than 2,000 milliseconds.", 1, "", "", "", "", "", ""], "isController": false}, {"data": [], "isController": false}, {"data": [], "isController": false}, {"data": [], "isController": false}]}, function(index, item){
         return item;
     }, [[0, 0]], 0);
 
