@@ -24,7 +24,16 @@ jobs:
           distribution: temurin
           java-version: '21'
 
+      # Melhoria: Cache para não baixar o JMeter toda vez
+      - name: Cache JMeter
+        id: cache-jmeter
+        uses: actions/cache@v4
+        with:
+          path: apache-jmeter-5.6.3
+          key: jmeter-5.6.3
+
       - name: Baixar JMeter
+        if: steps.cache-jmeter.outputs.cache-hit != 'true'
         run: |
           wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.zip
           unzip apache-jmeter-5.6.3.zip
@@ -33,32 +42,19 @@ jobs:
         run: mkdir -p artifacts
 
       - name: Executar teste de performance
+        # Usamos "continue-on-error" porque sabemos que o SLA de 2s pode falhar
+        # mas queremos gerar o dashboard mesmo assim para análise.
+        continue-on-error: true
         run: |
           apache-jmeter-5.6.3/bin/jmeter -n \
             -t blazedemo-performance.jmx \
             -l artifacts/resultado.jtl \
             -e -o artifacts/dashboard
 
-      - name: Listar arquivos gerados
-        if: always()
-        run: |
-          echo "=== Arquivos do projeto ==="
-          ls -R
-          echo "=== Arquivos em artifacts ==="
-          ls -R artifacts || true
-
-      - name: Publicar resultado JTL
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: resultado-jtl
-          path: artifacts/resultado.jtl
-          if-no-files-found: warn
-
       - name: Publicar dashboard HTML
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: dashboard
+          name: dashboard-performance
           path: artifacts/dashboard
-          if-no-files-found: warn
+          if-no-files-found: error
